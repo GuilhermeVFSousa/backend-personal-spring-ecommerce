@@ -33,26 +33,26 @@ public class Produto {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "id")
+	@Column(name = "descricao")
 	private String descricao;
 	
 	@Column(name = "unidade_preco")
 	private BigDecimal unidadePreco; 
 	
-	@Column(name = "imagem_url")
+	@Column(name = "image_url")
 	private String imageUrl;
 	
 	@Column(name = "ativo")
 	private boolean ativo;
 	
-	@Column(name = "unidade_em_estoque")
+	@Column(name = "unidades_em_estoque")
 	private Integer unidadeEmEstoque;
 	
 	@Column(name = "data_criacao")
 	@CreationTimestamp
 	private Date dataCriacao;
 	
-	@Column(name = "ultimo_update")
+	@Column(name = "ultimo_updated")
 	@UpdateTimestamp
 	private Date UltimoUpdate;
 	
