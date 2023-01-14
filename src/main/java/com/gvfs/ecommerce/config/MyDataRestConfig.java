@@ -1,7 +1,6 @@
 package com.gvfs.ecommerce.config;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -61,7 +60,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		List<Class> entityClasses = new ArrayList<>();
 		
 		//obter o entity type das entidades
-		for (EntityType tempEntityType : entities) {
+		for (EntityType<?> tempEntityType : entities) {
 			entityClasses.add(tempEntityType.getJavaType());
 		}
 			
