@@ -1,0 +1,1 @@
+CREATE USER 'ecommerceapp'@'localhost' IDENTIFIED BY 'ecommerceapp';
