@@ -25,11 +25,11 @@ CREATE TABLE `estado` (
   `nome` varchar(75) DEFAULT NULL,
   `uf` varchar(2) DEFAULT NULL,
   `ibge` int(2) DEFAULT NULL,
-  `pais` int(3) NOT NULL,
+  `pais_id` int(3) DEFAULT NULL,
   `ddd` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_pais` (`pais`),
-  CONSTRAINT `fk_pais` FOREIGN KEY (`pais`) REFERENCES `pais` (`id`)
+  KEY `fk_pais` (`pais_id`),
+  CONSTRAINT `fk_pais` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -41,11 +41,11 @@ DROP TABLE IF EXISTS `cidade`;
 CREATE TABLE `cidade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(120) DEFAULT NULL,
-  `uf` int(2) NOT NULL,
+  `uf_id` int(2) NOT NULL,
   `ibge` int(7) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_estado` (`uf`),
-  CONSTRAINT `fk_estado` FOREIGN KEY (`uf`) REFERENCES `estado` (`id`)
+  KEY `fk_estado` (`uf_id`),
+  CONSTRAINT `fk_estado` FOREIGN KEY (`uf_id`) REFERENCES `estado` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -59,40 +59,40 @@ INSERT INTO `pais` (`id`, `nome`, `nome_pt`, `sigla`, `bacen`) VALUES
 --
 -- Insert data for table `estado`
 --
-INSERT INTO `estado` (`id`, `nome`, `uf`, `ibge`, `pais`, `ddd`) VALUES
-(1, 'Acre', 'AC', 12, 1, '68'),
-(2, 'Alagoas', 'AL', 27, 1, '82'),
-(3, 'Amazonas', 'AM', 13, 1, '97,92'),
-(4, 'Amapá', 'AP', 16, 1, '96'),
-(5, 'Bahia', 'BA', 29, 1, '77,75,73,74,71'),
-(6, 'Ceará', 'CE', 23, 1, '88,85'),
-(7, 'Distrito Federal', 'DF', 53, 1, '61'),
-(8, 'Espírito Santo', 'ES', 32, 1, '28,27'),
-(9, 'Goiás', 'GO', 52, 1, '62,64,61'),
-(10, 'Maranhão', 'MA', 21, 1, '99,98'),
-(11, 'Minas Gerais', 'MG', 31, 1, '34,37,31,33,35,38,32'),
-(12, 'Mato Grosso do Sul', 'MS', 50, 1, '67'),
-(13, 'Mato Grosso', 'MT', 51, 1, '65,66'),
-(14, 'Pará', 'PA', 15, 1, '91,94,93'),
-(15, 'Paraíba', 'PB', 25, 1, '83'),
-(16, 'Pernambuco', 'PE', 26, 1, '81,87'),
-(17, 'Piauí', 'PI', 22, 1, '89,86'),
-(18, 'Paraná', 'PR', 41, 1, '43,41,42,44,45,46'),
-(19, 'Rio de Janeiro', 'RJ', 33, 1, '24,22,21'),
-(20, 'Rio Grande do Norte', 'RN', 24, 1, '84'),
-(21, 'Rondônia', 'RO', 11, 1, '69'),
-(22, 'Roraima', 'RR', 14, 1, '95'),
-(23, 'Rio Grande do Sul', 'RS', 43, 1, '53,54,55,51'),
-(24, 'Santa Catarina', 'SC', 42, 1, '47,48,49'),
-(25, 'Sergipe', 'SE', 28, 1, '79'),
-(26, 'São Paulo', 'SP', 35, 1, '11,12,13,14,15,16,17,18,19'),
-(27, 'Tocantins', 'TO', 17, 1, '63'),
-(99, 'Exterior', 'EX', 99, NULL, NULL);
+INSERT INTO `estado` (`id`, `nome`, `uf`, `ibge`, `pais_id`) VALUES
+(1, 'Acre', 'AC', 12, 1),
+(2, 'Alagoas', 'AL', 27, 1),
+(3, 'Amazonas', 'AM', 13, 1),
+(4, 'Amapá', 'AP', 16, 1),
+(5, 'Bahia', 'BA', 29, 1),
+(6, 'Ceará', 'CE', 23, 1),
+(7, 'Distrito Federal', 'DF', 53, 1),
+(8, 'Espírito Santo', 'ES', 32, 1),
+(9, 'Goiás', 'GO', 52, 1),
+(10, 'Maranhão', 'MA', 21, 1),
+(11, 'Minas Gerais', 'MG', 31, 1),
+(12, 'Mato Grosso do Sul', 'MS', 50, 1),
+(13, 'Mato Grosso', 'MT', 51, 1),
+(14, 'Pará', 'PA', 15, 1),
+(15, 'Paraíba', 'PB', 25, 1),
+(16, 'Pernambuco', 'PE', 26, 1),
+(17, 'Piauí', 'PI', 22, 1),
+(18, 'Paraná', 'PR', 41, 1),
+(19, 'Rio de Janeiro', 'RJ', 33, 1),
+(20, 'Rio Grande do Norte', 'RN', 24, 1),
+(21, 'Rondônia', 'RO', 11, 1),
+(22, 'Roraima', 'RR', 14, 1),
+(23, 'Rio Grande do Sul', 'RS', 43, 1),
+(24, 'Santa Catarina', 'SC', 42, 1),
+(25, 'Sergipe', 'SE', 28, 1),
+(26, 'São Paulo', 'SP', 35, 1),
+(27, 'Tocantins', 'TO', 17, 1),
+(99, 'Exterior', 'EX', 99, NULL);
 
 --
 -- Insert data for table `municipio`
 --
-INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
+INSERT INTO `cidade` (`id`, `nome`, `uf_id`, `ibge`) VALUES
 (1, 'Afonso Cláudio', 8, 3200102),
 (2, 'Água Doce do Norte', 8, 3200169),
 (3, 'Águia Branca', 8, 3200136),
@@ -1610,7 +1610,7 @@ INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
 (1517, 'Douradina', 12, 5003504),
 (1518, 'Dourados', 12, 5003702),
 (1519, 'Eldorado', 12, 5003751);
-INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
+INSERT INTO `cidade` (`id`, `nome`, `uf_id`, `ibge`) VALUES
 (1520, 'Fátima do Sul', 12, 5003801),
 (1521, 'Figueirão', 12, 5003900),
 (1522, 'Glória de Dourados', 12, 5004007),
@@ -3052,7 +3052,7 @@ INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
 (2959, 'Jardim Alegre', 18, 4112504),
 (2960, 'Jardim Olinda', 18, 4112603),
 (2961, 'Jataizinho', 18, 4112702);
-INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
+INSERT INTO `cidade` (`id`, `nome`, `uf_id`, `ibge`) VALUES
 (2962, 'Jesuítas', 18, 4112751),
 (2963, 'Joaquim Távora', 18, 4112801),
 (2964, 'Jundiaí do Sul', 18, 4112900),
@@ -4471,7 +4471,7 @@ INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
 (4378, 'Ouro Preto do Oeste', 21, 1100155),
 (4379, 'Parecis', 21, 1101450),
 (4380, 'Pimenta Bueno', 21, 1100189);
-INSERT INTO `cidade` (`id`, `nome`, `uf`, `ibge`) VALUES
+INSERT INTO `cidade` (`id`, `nome`, `uf_id`, `ibge`) VALUES
 (4381, 'Pimenteiras do Oeste', 21, 1101468),
 (4382, 'Porto Velho', 21, 1100205),
 (4383, 'Presidente Médici', 21, 1100254),
