@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,7 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "orders")
 @Getter @Setter
 public class Order {
 	
@@ -60,11 +61,11 @@ public class Order {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@OneToMany
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
 	private Address shippingAddress;
 	
-	@OneToMany
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "billing_address_id", referencedColumnName = "id")
 	private Address billingAddress;
 	
