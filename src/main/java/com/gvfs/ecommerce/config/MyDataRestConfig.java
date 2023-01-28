@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -15,13 +16,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.gvfs.ecommerce.entity.Cidade;
-import com.gvfs.ecommerce.entity.Estado;
 import com.gvfs.ecommerce.entity.Pais;
 import com.gvfs.ecommerce.entity.Produto;
 import com.gvfs.ecommerce.entity.ProdutoCategoria;
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
+	
+	@Value("${allowed.origins}")
+	private String[] theAllowedOrigins;
 	
 	private EntityManager entityManager;
 	
@@ -57,6 +60,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 				
 		// expor os Ids no JSON
 		exposeIds(config);
+		
+		// config cors mapping
+		cors.addMapping(config.getBasePath() + "/**").allowedOrigins(theAllowedOrigins);
 	}
 
 	// método extraído, para evitar repetição de código
