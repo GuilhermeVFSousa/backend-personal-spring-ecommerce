@@ -17,6 +17,7 @@ spring:
   data:
     rest:
       base-path: /api
+      detection-strategy: annotated
       
 allowed:
   origins: http://localhost:4200
