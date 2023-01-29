@@ -16,6 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.gvfs.ecommerce.entity.Cidade;
+import com.gvfs.ecommerce.entity.Order;
 import com.gvfs.ecommerce.entity.Pais;
 import com.gvfs.ecommerce.entity.Produto;
 import com.gvfs.ecommerce.entity.ProdutoCategoria;
@@ -46,16 +47,17 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		// desabilitar o métodos HTTP para ProdutoCategoria (PUT, POST e DELETE)
 		disableHttpMethods(ProdutoCategoria.class, config, theUnsupportedActions);
 		
-		
 		// desabilitar o métodos HTTP para Pais (PUT, POST e DELETE)
 		disableHttpMethods(Pais.class, config, theUnsupportedActions);
-		
 		
 		// desabilitar o métodos HTTP para Estado (PUT, POST e DELETE)
 		disableHttpMethods(Produto.class, config, theUnsupportedActions);
 		
 		// desabilitar o métodos HTTP para Cidade (PUT, POST e DELETE)
 		disableHttpMethods(Cidade.class, config, theUnsupportedActions);
+		
+		// desabilitar o métodos HTTP para Order (PUT, POST e DELETE)
+		disableHttpMethods(Order.class, config, theUnsupportedActions);
 				
 				
 		// expor os Ids no JSON
