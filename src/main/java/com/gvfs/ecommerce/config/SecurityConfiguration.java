@@ -31,6 +31,9 @@ public class SecurityConfiguration {
 		// mudando a response do body 401 vazio para uma response mais amigável
 		Okta.configureResourceServer401ResponseBody(http);
 		
+		// desabilitando CSRF, pois Cookies para rastreamento de sessão não é utilizado
+		http.csrf().disable();
+		
 		return http.build();
 	}
 
