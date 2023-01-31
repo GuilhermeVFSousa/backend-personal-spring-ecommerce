@@ -20,7 +20,7 @@ spring:
       detection-strategy: annotated
       
 allowed:
-  origins: http://localhost:4200
+  origins: https://localhost:4200
 
 okta:
   oauth2:
