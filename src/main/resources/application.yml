@@ -33,3 +33,7 @@ okta:
     client-id: ${OKTA_CLIENT_ID}
     issuer: https://${OKTA_DOMAIN}/oauth2/default
     
+stripe:
+  key:
+    secret: ${STRIPE_KEY_SECRET}
+    
